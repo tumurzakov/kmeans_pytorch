@@ -80,7 +80,7 @@ def kmeans(
             tol=f'{tol:0.6f}'
         )
         tqdm_meter.update()
-        if center_shift ** 2 < tol:
+        if center_shift ** 2 < tol or torch.isnan(center_shift):
             break
 
     return choice_cluster.cpu(), initial_state.cpu()
